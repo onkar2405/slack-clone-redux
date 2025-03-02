@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import HeaderSearch from "./HeaderSearch";
 
 const HeaderContainer = styled.div`
@@ -34,16 +35,35 @@ const HeaderAvatar = styled(Avatar)`
   }
 `;
 
+const HeaderRight = styled.div`
+  flex: 0.3;
+  display: flex;
+  color: #fff;
+  align-items: flex-end;
+
+  > .MuiSvgIcon-root {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+`;
+
 export default function Header() {
   return (
     <HeaderContainer>
+      {/* Header Left */}
       <HeaderLeft>
+        {/* TODO: Add onClick */}
         <HeaderAvatar />
         <AccessTimeIcon sx={{ color: "white" }} />
       </HeaderLeft>
 
       {/* Header Search */}
       <HeaderSearch />
+
+      {/* Header Right */}
+      <HeaderRight>
+        <HelpOutlineIcon />
+      </HeaderRight>
     </HeaderContainer>
   );
 }
