@@ -22,10 +22,15 @@ const OptionContainer = styled.div`
 
 const OptionalChannel = styled.div``;
 
-export default function SideBarOption({ OptionIcon, title }) {
+export default function SideBarOption({ OptionIcon, title, addChannelOption }) {
+  const addChannel = () => {};
+  const selectChannelOption = () => {};
+
   return (
     // TODO: Check why hover is not hovering the whole div and only text & Icon
-    <OptionContainer>
+    <OptionContainer
+      onClick={addChannelOption ? addChannel : selectChannelOption}
+    >
       {OptionIcon && <OptionIcon fontSize="small" />}
       {OptionIcon ? (
         <p>{title}</p>

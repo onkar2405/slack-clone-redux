@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import SideBarHeader from "./SideBarHeader";
 import {
+  Add,
   Apps,
   BookmarkBorder,
   Drafts,
   ExpandLess,
+  ExpandMore,
   FileCopy,
   Inbox,
   InsertComment,
@@ -20,6 +22,12 @@ const SideBarContainer = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top: 56px;
+
+  > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #49274b;
+  }
 `;
 
 export default function SideBar() {
@@ -35,6 +43,10 @@ export default function SideBar() {
         <SideBarOption OptionIcon={Apps} title="Apps" />
         <SideBarOption OptionIcon={FileCopy} title="File browser" />
         <SideBarOption OptionIcon={ExpandLess} title="Show less" />
+        <hr />
+        <SideBarOption OptionIcon={ExpandMore} title="Channels" />
+        <hr />
+        <SideBarOption OptionIcon={Add} addChannelOption title="Add Channel" />
       </SideBarContainer>
     </>
   );
