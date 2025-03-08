@@ -14,6 +14,8 @@ import {
   PeopleAlt,
 } from "@mui/icons-material";
 import SideBarOption from "./SideBarOption";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "../../firebase";
 
 const SideBarContainer = styled.div`
   background-color: var(--slack-header-bg-color);
@@ -31,6 +33,9 @@ const SideBarContainer = styled.div`
 `;
 
 export default function SideBar() {
+  const [channels, loading, error] = useCollection(db.collection("rooms"));
+  console.log("channel", channels);
+
   return (
     <>
       <SideBarContainer>
@@ -47,6 +52,15 @@ export default function SideBar() {
         <SideBarOption OptionIcon={ExpandMore} title="Channels" />
         <hr />
         <SideBarOption OptionIcon={Add} addChannelOption title="Add Channel" />
+
+        {channels?.docs.map((doc) => (
+          <SideBarOption
+            selectChannel
+            id={doc.id}
+            key={doc.id}
+            title={doc.data().name}
+          />
+        ))}
       </SideBarContainer>
     </>
   );

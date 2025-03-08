@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { db } from "../../firebase";
 
 const OptionContainer = styled.div`
   display: flex;
@@ -20,10 +21,30 @@ const OptionContainer = styled.div`
   }
 `;
 
-const OptionalChannel = styled.div``;
+const OptionalChannel = styled.h3`
+  padding: 10px 0;
+  font-weight: 500;
 
-export default function SideBarOption({ OptionIcon, title, addChannelOption }) {
-  const addChannel = () => {};
+  > span {
+    padding-right: 12px;
+  }
+`;
+
+export default function SideBarOption({
+  OptionIcon,
+  title,
+  addChannelOption,
+  id,
+}) {
+  const addChannel = () => {
+    const channelName = prompt("Please enter the channel name:");
+
+    if (channelName) {
+      db.collection("rooms").add({
+        name: channelName,
+      });
+    }
+  };
   const selectChannelOption = () => {};
 
   return (
