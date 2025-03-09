@@ -7,7 +7,6 @@ export const appSlice = createSlice({
   },
   reducers: {
     enterRoom: (state, action) => {
-      console.log(state);
       state.roomId = action.payload.roomId;
     },
   },
@@ -18,7 +17,6 @@ export const { enterRoom } = appSlice.actions;
 // Selectors
 
 export const selectRoomId = (state) => {
-  console.log("SELE", state);
   return state.app.roomId;
 };
 

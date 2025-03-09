@@ -6,6 +6,7 @@ import Header from "./components/header/Header";
 import AppBody from "./components/main/AppBody";
 import SideBar from "./components/sidebar/SideBar";
 import styled from "styled-components";
+import Chat from "./components/main/chat/Chat";
 
 const AppLayout = styled.div`
   display: flex;
@@ -18,8 +19,9 @@ function App() {
         <Header />
         <AppLayout>
           <SideBar />
+          <AppBody />
           <Routes>
-            <Route element={<AppBody />} path="/" />
+            <Route element={<Chat />} path="/" />
           </Routes>
         </AppLayout>
       </Router>

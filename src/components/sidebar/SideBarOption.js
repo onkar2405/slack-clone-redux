@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { db } from "../../firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { enterRoom, selectRoomId } from "../../features/appSlice";
+import { useDispatch } from "react-redux";
+import { enterRoom } from "../../features/appSlice";
 
 const OptionContainer = styled.div`
   display: flex;
@@ -39,8 +39,6 @@ export default function SideBarOption({
   id,
 }) {
   const dispatch = useDispatch();
-  const selector = useSelector(selectRoomId);
-  console.log(selector);
   const addChannel = () => {
     const channelName = prompt("Please enter the channel name:");
 
