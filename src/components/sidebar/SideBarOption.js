@@ -59,7 +59,6 @@ export default function SideBarOption({
   };
 
   return (
-    // TODO: Check why hover is not hovering the whole div and only text & Icon
     <OptionContainer
       onClick={addChannelOption ? addChannel : selectChannelOption}
     >
