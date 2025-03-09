@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { db } from "../../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { enterRoom, selectRoomId } from "../../features/appSlice";
 
 const OptionContainer = styled.div`
   display: flex;
@@ -11,7 +13,7 @@ const OptionContainer = styled.div`
   cursor: pointer;
   font-size: 12px;
 
-  :hover {
+  &:hover {
     opacity: 0.9;
     background-color: #340e36;
   }
@@ -22,7 +24,7 @@ const OptionContainer = styled.div`
 `;
 
 const OptionalChannel = styled.h3`
-  padding: 10px 0;
+  padding: 3px 0;
   font-weight: 500;
 
   > span {
@@ -36,6 +38,9 @@ export default function SideBarOption({
   addChannelOption,
   id,
 }) {
+  const dispatch = useDispatch();
+  const selector = useSelector(selectRoomId);
+  console.log(selector);
   const addChannel = () => {
     const channelName = prompt("Please enter the channel name:");
 
@@ -45,7 +50,15 @@ export default function SideBarOption({
       });
     }
   };
-  const selectChannelOption = () => {};
+  const selectChannelOption = () => {
+    if (id) {
+      dispatch(
+        enterRoom({
+          roomId: id,
+        })
+      );
+    }
+  };
 
   return (
     // TODO: Check why hover is not hovering the whole div and only text & Icon

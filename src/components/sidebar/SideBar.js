@@ -16,6 +16,7 @@ import {
 import SideBarOption from "./SideBarOption";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
+import LoadingIndicator from "../common/LoadingIndicator";
 
 const SideBarContainer = styled.div`
   background-color: var(--slack-header-bg-color);
@@ -26,15 +27,12 @@ const SideBarContainer = styled.div`
   margin-top: 56px;
 
   > hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
     border: 1px solid #49274b;
   }
 `;
 
 export default function SideBar() {
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
-  console.log("channel", channels);
+  const [channels, loading] = useCollection(db.collection("rooms"));
 
   return (
     <>
@@ -53,14 +51,18 @@ export default function SideBar() {
         <hr />
         <SideBarOption OptionIcon={Add} addChannelOption title="Add Channel" />
 
-        {channels?.docs.map((doc) => (
-          <SideBarOption
-            selectChannel
-            id={doc.id}
-            key={doc.id}
-            title={doc.data().name}
-          />
-        ))}
+        {loading ? (
+          <LoadingIndicator color={"white"} size={"15px"} />
+        ) : (
+          channels?.docs.map((doc) => (
+            <SideBarOption
+              selectChannel
+              id={doc.id}
+              key={doc.id}
+              title={doc.data().name}
+            />
+          ))
+        )}
       </SideBarContainer>
     </>
   );
